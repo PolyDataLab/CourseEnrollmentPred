@@ -1,0 +1,1 @@
+Here are the implementation of Course Recommendation models and Predict from Recommender (PfR) methods for course enrollment prediction task described in the paper. 
