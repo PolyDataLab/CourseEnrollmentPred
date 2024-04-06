@@ -299,7 +299,7 @@ def find_course_avg_last_4_prior_terms(course, prior_semester, term_dict_all_pri
         count_course_avg[course] = float(cnt2/n2)
     return count_course_avg
 
-
+# calculate mse, rmse, mae using the recommendations from CourseDREAM model
 def calculate_mse_for_course_allocation(term_dict, term_dict_predicted, term_dict_predicted_true, term_dict_predicted_false, count_total_course, item_dict, count_course_avg_all, course_sd_main, course_number_terms, term_dict_all_prior, output_dir):
     mse_for_course_allocation = 0.0
     mse_for_course_allocation_2 = 0.0
@@ -834,6 +834,7 @@ def remove_summer_term_from_test(input_data):
     test_set_without_summer = pd.DataFrame(test_all, columns=['userID', 'baskets', 'num_baskets', 'last_semester'])
     return test_set_without_summer
 
+# testing with CDREAM model
 def test(offered_courses, reversed_item_dict, reversed_user_dict, item_dict, reversed_user_dict3, frequency_of_courses_train, count_course_avg_train, output_path):
     f = open(output_path, "w") #generating text file with recommendation using filtering function
     # Load data
@@ -1363,8 +1364,8 @@ if __name__ == '__main__':
     print("standard_deviation for errors: ", std_dev_error)
     print("mean of absolute errors: ", mean_ab_error)
     print("standard_deviation for absolute errors: ", std_dev_ab_error)
-    print("mean of standardized errors: ", mean_st_error)
-    print("standard_deviation for standardized errors: ", std_dev_st_error)
+    print("mean of normalized errors: ", mean_st_error)
+    print("standard_deviation for normalized errors: ", std_dev_st_error)
     # print(term_dict[1221])
     #print(term_dict_predicted[1221])
     #print(reversed_item_dict)
@@ -1387,8 +1388,8 @@ if __name__ == '__main__':
     # print("standard_deviation for errors: ", std_dev_error)
     # print("mean of absolute errors: ", mean_ab_error)
     # print("standard_deviation for absolute errors: ", std_dev_ab_error)
-    # print("mean of standardized errors: ", mean_st_error)
-    # print("standard_deviation for standardized errors: ", std_dev_st_error)
+    # print("mean of normalized errors: ", mean_st_error)
+    # print("standard_deviation for normalized errors: ", std_dev_st_error)
     # # print(term_dict[1221])
     # # print(term_dict_predicted[1221])
     # # #print(reversed_item_dict)
@@ -1411,8 +1412,8 @@ if __name__ == '__main__':
     # print("standard_deviation for errors: ", std_dev_error)
     # print("mean of absolute errors: ", mean_ab_error)
     # print("standard_deviation for absolute errors: ", std_dev_ab_error)
-    # print("mean of standardized errors: ", mean_st_error)
-    # print("standard_deviation for standardized errors: ", std_dev_st_error)
+    # print("mean of normalized errors: ", mean_st_error)
+    # print("standard_deviation for normalized errors: ", std_dev_st_error)
     # # print(term_dict[1221])
     # # print(term_dict_predicted[1221])
     # # #print(reversed_item_dict)
@@ -1435,8 +1436,8 @@ if __name__ == '__main__':
     # print("standard_deviation for errors: ", std_dev_error)
     # print("mean of absolute errors: ", mean_ab_error)
     # print("standard_deviation for absolute errors: ", std_dev_ab_error)
-    # print("mean of standardized errors: ", mean_st_error)
-    # print("standard_deviation for standardized errors: ", std_dev_st_error)
+    # print("mean of normalized errors: ", mean_st_error)
+    # print("standard_deviation for normalized errors: ", std_dev_st_error)
     # # print(term_dict[1221])
     # # print(term_dict_predicted[1221])
     # #print(reversed_item_dict)
