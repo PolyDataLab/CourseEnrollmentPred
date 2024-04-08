@@ -32,6 +32,6 @@ def offered_course_cal(input_path):
     return offered_course_dict
 
 if __name__ == '__main__':
-    #data1 = pd.read_json('/Users/mkhan149/Downloads/Experiments/all_data.json', orient='records', lines=True)
-    offered_course_dict = offered_course_cal('/Users/mkhan149/Downloads/Experiments/all_data.json')
+    #data1 = pd.read_json('./all_data.json', orient='records', lines=True)
+    offered_course_dict = offered_course_cal('./all_data.json')
     #print(offered_course_dict[1221])
