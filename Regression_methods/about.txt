@@ -1,1 +1,9 @@
-Here, you will find the implementation of all regression methods for course enrollment prediction task provided in the paper. 
+Here, you will find the implementation of all regression methods for the course enrollment prediction task provided in the paper. 
+Explanation of each Python file:
+
+preprocess.py --> preprocess the training, validation, and test data.
+offered_courses.py --> Calculate the offered course list for each semester from all the data. 
+utils.py --> post-processing function to filter out if a course is not offered in the target semester or if a student took a course in prior semesters to recommend new courses.
+model_name.py--> Implement the regression algorithm (provided in each folder) and calculate MAE and RMSE for all courses in target semesters. 
+model_name_CIS.py--> Implement the regression algorithm (provided in each folder) and calculate MAE and RMSE for CIS Departmental courses in target semesters.
+
