@@ -30,7 +30,7 @@ def load_data(input_file, flag=None):
 
 #loading model file
 def load_model_file(checkpoint_dir):
-    MODEL_DIR = '/Users/mkhan149/Downloads/Experiments/Others/DREAM/runs/' + checkpoint_dir
+    MODEL_DIR = './Others/DREAM/runs/' + checkpoint_dir
     #MODEL_DIR = checkpoint_dir
     names = [name for name in os.listdir(MODEL_DIR) if os.path.isfile(os.path.join(MODEL_DIR, name))]
     max_epoch = 0
@@ -39,7 +39,7 @@ def load_model_file(checkpoint_dir):
         if int(name[6:8]) >= max_epoch:
             max_epoch = int(name[6:8])
             choose_model = name
-    MODEL_FILE = '/Users/mkhan149/Downloads/Experiments/Others/DREAM/runs/' + checkpoint_dir + '/' + choose_model
+    MODEL_FILE = './Others/DREAM/runs/' + checkpoint_dir + '/' + choose_model
     #MODEL_FILE = checkpoint_dir + '/' + choose_model
     return MODEL_FILE
 
