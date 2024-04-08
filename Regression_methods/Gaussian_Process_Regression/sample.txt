@@ -1,1 +1,0 @@
-GPR algorithm for course enrollment prediction task. 
