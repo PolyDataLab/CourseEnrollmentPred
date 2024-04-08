@@ -7,7 +7,7 @@ import re
 # calculate item_list from training data
 def sequence_of_baskets(input_file):
     item_list = []
-    with open('/Users/mkhan149/Downloads/Experiments/Course_Beacon/train_main.txt', 'w') as f:
+    with open('./train_main.txt', 'w') as f:
         for line in input_file:
             elements = line.split("|")
             if len(elements) >= 5:
@@ -46,7 +46,7 @@ def sequence_of_baskets(input_file):
 #delete items which are not available in training data
 def sequence_of_baskets_valid(input_file, item_list):
 
-    with open('/Users/mkhan149/Downloads/Experiments/Course_Beacon/validate_main2.txt', 'w') as f:
+    with open('./validate_main2.txt', 'w') as f:
         for line in input_file:
             elements = line.split("|")
             if len(elements) >= 5:
@@ -103,7 +103,7 @@ def sequence_of_baskets_valid(input_file, item_list):
 
 #filtering out sequences with less than 3 from validation data
 def filter_valid_data(input_data):
-    with open('/Users/mkhan149/Downloads/Experiments/Course_Beacon/validate_main.txt', 'w') as f:
+    with open('./validate_main.txt', 'w') as f:
         for line in input_data:
             elements = line.split("|")
             if len(elements) >= 5:
@@ -118,7 +118,7 @@ def filter_valid_data(input_data):
 
 #delete items which are not available in training and validation data
 def delete_items_from_test_data(testing_instances, item_dict):
-    new_file_link = '/Users/mkhan149/Downloads/Experiments/Course_Beacon/test_main2.txt'
+    new_file_link = './test_main2.txt'
     f = open(new_file_link, 'w')
     # item_dict2 = {}
     for line in testing_instances:
@@ -157,7 +157,7 @@ def delete_items_from_test_data(testing_instances, item_dict):
     #return item_dict, reversed_item_dict, item_probs
 #delete_lines_with the length less than 3 from test data
 def delete_lines_with_less_lenghts_from_test(testing_instances):
-     with open('/Users/mkhan149/Downloads/Experiments/Course_Beacon/test_main.txt', 'w') as f:
+     with open('./test_main.txt', 'w') as f:
         for line in testing_instances:
             elements = line.split("|")
             flag =0
@@ -224,7 +224,7 @@ def convert_df_to_txt(input_file, input_path):
         f.write("\n")
     #print(df2)
     #text file generation
-    #np.savetxt(r'/Users/mkhan149/Downloads/Experiments/Course_Beacon/basket_seq2.txt', df2['course_sequence'].values, fmt='%s')
+    #np.savetxt(r'./basket_seq2.txt', df2['course_sequence'].values, fmt='%s')
     return dataset
 
 def remove_summer_term_from_test(input_data):
@@ -242,7 +242,7 @@ def remove_summer_term_from_test(input_data):
             test_all.append(row)
         index +=1
     test_set_without_summer = pd.DataFrame(test_all, columns=['userID', 'baskets', 'num_baskets', 'last_semester'])
-    test_set_without_summer.to_json('/Users/mkhan149/Downloads/Experiments/test_sample_all_without_summer.json', orient='records', lines=True)
+    test_set_without_summer.to_json('./test_sample_all_without_summer.json', orient='records', lines=True)
     return test_set_without_summer
 
 def remove_summer_term_from_valid(input_data):
@@ -260,37 +260,37 @@ def remove_summer_term_from_valid(input_data):
             test_all.append(row)
         index +=1
     valid_set_without_summer = pd.DataFrame(test_all, columns=['userID', 'baskets', 'num_baskets', 'last_semester'])
-    valid_set_without_summer.to_json('/Users/mkhan149/Downloads/Experiments/valid_sample_all_without_summer.json', orient='records', lines=True)
+    valid_set_without_summer.to_json('./valid_sample_all_without_summer.json', orient='records', lines=True)
     return valid_set_without_summer
 
 if __name__ == '__main__':
-    data_dir= '/Users/mkhan149/Downloads/Experiments/Course_Beacon/'
+    data_dir= './'
     input_dir = data_dir + "/input_dir"
     utils.create_folder(input_dir)
-    # train_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/train_sample_augmented_without_summer.json', orient='records', lines= True)
-    # #file_path1 = '/Users/mkhan149/Downloads/Experiments/Course_Beacon/train_sample.csv'
-    train_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/train_sample_augmented.json', orient='records', lines= True)
-    #train_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/train_sample_augmented_merging_summer_fall.json', orient='records', lines= True)
-    #file_path1 = '/Users/mkhan149/Downloads/Experiments/Course_Beacon/train_sample.csv'
+    # train_data = pd.read_json('./Filtered_data/train_sample_augmented_without_summer.json', orient='records', lines= True)
+    # #file_path1 = './train_sample.csv'
+    train_data = pd.read_json('./Filtered_data/train_sample_augmented.json', orient='records', lines= True)
+    #train_data = pd.read_json('./Filtered_data/train_sample_augmented_merging_summer_fall.json', orient='records', lines= True)
+    #file_path1 = './train_sample.csv'
     file_path1 = train_data
     input_path= input_dir+ "/train_data.txt"
     converted_txt_df1 = convert_df_to_txt(file_path1, input_path)
-    # valid_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/valid_data_all_without_summer.json', orient='records', lines= True)
-    #valid_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/valid_data_all_CR.json', orient='records', lines= True)
-    valid_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/valid_sample_all.json',  orient='records', lines= True)
+    # valid_data = pd.read_json('./valid_data_all_without_summer.json', orient='records', lines= True)
+    #valid_data = pd.read_json('./valid_data_all_CR.json', orient='records', lines= True)
+    valid_data = pd.read_json('./Filtered_data/valid_sample_all.json',  orient='records', lines= True)
     #valid_data = remove_summer_term_from_valid(valid_data)
-    #valid_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/valid_data_all_merging_summer_fall.json', orient='records', lines= True)
+    #valid_data = pd.read_json('./valid_data_all_merging_summer_fall.json', orient='records', lines= True)
     #print(converted_txt_df1)
-    #file_path2 = '/Users/mkhan149/Downloads/Experiments/Course_Beacon/valid_sample.csv'
+    #file_path2 = './valid_sample.csv'
     file_path2 = valid_data
     input_path2= input_dir+ "/valid_data.txt"
     converted_txt_df2 = convert_df_to_txt(file_path2, input_path2)
-    # test_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/test_data_all_without_summer.json', orient='records', lines= True)
-    #test_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/test_data_all_CR.json', orient='records', lines= True)
-    test_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/test_sample_all.json',  orient='records', lines= True)
+    # test_data = pd.read_json('./test_data_all_without_summer.json', orient='records', lines= True)
+    #test_data = pd.read_json('./test_data_all_CR.json', orient='records', lines= True)
+    test_data = pd.read_json('./Filtered_data/test_sample_all.json',  orient='records', lines= True)
     #test_data = remove_summer_term_from_test(test_data)
-    #test_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/test_data_all_merging_summer_fall.json', orient='records', lines= True)
-    #file_path3 = '/Users/mkhan149/Downloads/Experiments/Course_Beacon/test_sample.csv'
+    #test_data = pd.read_json('./test_data_all_merging_summer_fall.json', orient='records', lines= True)
+    #file_path3 = './test_sample.csv'
     file_path3 = test_data
     input_path3= input_dir+ "/test_data.txt"
     converted_txt_df3 = convert_df_to_txt(file_path3, input_path3)
