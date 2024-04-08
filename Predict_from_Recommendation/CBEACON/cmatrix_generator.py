@@ -4,7 +4,7 @@ import utils
 import preprocess
 
 # Model hyper-parameters
-tf.compat.v1.flags.DEFINE_string("data_dir", "/Users/mkhan149/Downloads/Experiments/Course_Beacon", "The input data directory (default: None)")
+tf.compat.v1.flags.DEFINE_string("data_dir", "./Course_Beacon", "The input data directory (default: None)")
 tf.compat.v1.flags.DEFINE_integer("nb_hop", 1, "The order of the real adjacency matrix (default:1)")
 
 config = tf.compat.v1.flags.FLAGS
@@ -22,19 +22,19 @@ SEED_VALUES = [2, 9, 15, 44, 50, 55, 58, 79, 85, 92]
 data_dir = config.data_dir
 #print(data_dir)
 output_dir = data_dir + "/adj_matrix"
-#output_dir = "/Users/mkhan149/Downloads/Experiments/adj_matrix"
+#output_dir = "./adj_matrix"
 #training_file = data_dir + "/Main_dataset/train.txt"
 #training_file = data_dir + "/train2.txt"
 training_file = data_dir + '/input_dir/train_data.txt'
 
-#training_file = "/Users/mkhan149/Downloads/Experiments/Main_dataset/train.txt"
+#training_file = "./Main_dataset/train.txt"
 #validate_file = data_dir + "/Main_dataset/validate.txt"
 #validate_file = data_dir + "/validate2.txt"
 validate_file = data_dir + '/input_dir/valid_data.txt'
 
 testing_file = data_dir + '/input_dir/test_data.txt'
 
-#validate_file = "/Users/mkhan149/Downloads/Experiments//Main_dataset/validate.txt"
+#validate_file = ".//Main_dataset/validate.txt"
 print("***************************************************************************************")
 print("Output Dir: " + output_dir)
 
@@ -61,7 +61,7 @@ nb_train = len(training_instances)
 print(" + Total training sequences: ", nb_train)
 
 # utils.sequence_of_baskets_training(training_instances2)
-# training_file2= '/Users/mkhan149/Downloads/Experiments/Course_Beacon/train_main_new.txt'
+# training_file2= './Course_Beacon/train_main_new.txt'
 # training_instances3 = utils.read_file_as_lines(training_file2)
 
 #data preprocessing (validating data)
