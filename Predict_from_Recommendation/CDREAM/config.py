@@ -1,10 +1,10 @@
 class Config(object):
     def __init__(self):
-        self.TRAININGSET_DIR = '/Users/mkhan149/Downloads/Experiments/Others/DREAM/train_sample_all.json'
-        self.VALIDATIONSET_DIR = '/Users/mkhan149/Downloads/Experiments/Others/DREAM/valid_sample_without_target.json'
-        self.TESTSET_DIR = '/Users/mkhan149/Downloads/Experiments/Others/DREAM/target_set.json'
-        self.NEG_SAMPLES = '/Users/mkhan149/Downloads/Experiments/Others/DREAM/neg_sample.pickle'
-        self.MODEL_DIR = '/Users/mkhan149/Downloads/Experiments/Others/DREAM/runs/'
+        self.TRAININGSET_DIR = './Others/DREAM/train_sample_all.json'
+        self.VALIDATIONSET_DIR = './Others/DREAM/valid_sample_without_target.json'
+        self.TESTSET_DIR = './Others/DREAM/target_set.json'
+        self.NEG_SAMPLES = './Others/DREAM/neg_sample.pickle'
+        self.MODEL_DIR = './Others/DREAM/runs/'
         self.cuda = False
         self.clip = 10
         #self.epochs = 200
