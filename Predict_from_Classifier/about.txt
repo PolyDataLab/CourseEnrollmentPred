@@ -1,0 +1,8 @@
+Here, you will find the implementation of predict from classifier method using Logistic Regression algorithm for the course enrollment prediction task provided in the paper. 
+Explanation of each Python file:
+
+preprocess.py --> preprocess the training, validation, and test data.
+offered_courses.py --> Calculate the offered course list for each semester from all the data. 
+utils.py --> post-processing function to filter out if a course is not offered in the target semester or if a student took a course in prior semesters to recommend new courses.
+Logistic_regression.py--> Implement the Logistic Regression algorithm and re-purpose the classification output to estimate number of enrollments in courses and calculate MAE and RMSE for all courses in target semesters. 
+Logistic_regression_CIS.py--> Implement the Logistic Regression algorithm and re-purpose the classification output to estimate number of enrollments in CIS Departmental courses and calculate MAE and RMSE for CIS courses in target semesters.
