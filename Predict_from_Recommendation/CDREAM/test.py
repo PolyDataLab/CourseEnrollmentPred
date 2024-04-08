@@ -19,7 +19,7 @@ from offered_courses import *
 logger = dh.logger_fn("torch-log", "logs/test-{0}.log".format(time.asctime()))
 
 #MODEL = input("☛ Please input the model file you want to test: ")
-#MODEL = "/Users/mkhan149/Downloads/Experiments/Others/DREAM_2/runs/1663182568/model-09-0.8750-0.3290.model"
+#MODEL = "./Others/DREAM_2/runs/1663182568/model-09-0.8750-0.3290.model"
 #MODEL = "1681419484"
 #MODEL = "1681749277"
 #MODEL = "1683234575"
@@ -42,13 +42,13 @@ MODEL = "1697494782" #best recall score - 64, 3, 0.4
 #MODEL = "1700241774" # 64, 1, 0.6
 #MODEL = "1700241824" # 64, 2, 0.6
 #MODEL = "1700241865" # 64, 3, 0.6
-#MODEL = '/Users/mkhan149/Downloads/Experiments/Course_Beacon/runs/1674078249'
+#MODEL = './Course_Beacon/runs/1674078249'
 
 while not (MODEL.isdigit() and len(MODEL) == 10):
     MODEL = input("✘ The format of your input is illegal, it should be like(1490175368), please re-input: ")
 logger.info("✔︎ The format of your input is legal, now loading to next step...")
 MODEL_DIR = dh.load_model_file(MODEL)
-#MODEL_DIR = "/Users/mkhan149/Downloads/Experiments/Others/DREAM/runs/1663182568/model-09-0.8750-0.3290.model"
+#MODEL_DIR = "./Others/DREAM/runs/1663182568/model-09-0.8750-0.3290.model"
 
 def recall_cal(positives, pred_items, count_at_least_one_cor_pred, count_at_least_two_cor_pred, count_at_least_three_cor_pred, count_at_least_four_cor_pred, count_at_least_five_cor_pred, count_all_cor_pred, count_cor_pred):
         p_length= len(positives)
@@ -842,12 +842,12 @@ def test(offered_courses, reversed_item_dict, reversed_user_dict, item_dict, rev
 
     logger.info("✔︎ Training data processing...")
     #test_data = dh.load_data(Config().TRAININGSET_DIR)
-    # test_data = dh.load_data('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_sample_without_target.json')
-    test_data = dh.load_data('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_sample_without_target.json')
+    # test_data = dh.load_data('./Others/DREAM/test_sample_without_target.json')
+    test_data = dh.load_data('./Others/DREAM/test_sample_without_target.json')
 
     logger.info("✔︎ Test data processing...")
     #test_target = dh.load_data(Config().TESTSET_DIR)
-    test_target = dh.load_data('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_target_set.json')
+    test_target = dh.load_data('./Others/DREAM/test_target_set.json')
 
     logger.info("✔︎ Load negative sample...")
     with open(Config().NEG_SAMPLES, 'rb') as handle:
@@ -1018,8 +1018,8 @@ def test(offered_courses, reversed_item_dict, reversed_user_dict, item_dict, rev
                 row = [top_k1, target_basket2, pred_courses, rel_rec, recall_temp, target_semester]
                 rec_info.append(row)
                 # test_rec_info = pd.DataFrame(rec_info, columns=['bsize', 'target_courses', 'rec_courses', 'n_rel_rec', 'recall_score', 'target_semester'])
-                # test_rec_info.to_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_rec_info.json', orient='records', lines=True)
-                # test_rec_info.to_csv('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_rec_info.csv')
+                # test_rec_info.to_json('./Others/DREAM/test_rec_info.json', orient='records', lines=True)
+                # test_rec_info.to_csv('./Others/DREAM/test_rec_info.csv')
                 if recall_temp>0:  
                     recall_test_for_one_cor_pred += recall_temp
                 correct_preds2= len((set(positives) & set(pred_items)))
@@ -1186,8 +1186,8 @@ def test(offered_courses, reversed_item_dict, reversed_user_dict, item_dict, rev
 
     test_rec_info = pd.DataFrame(rec_info, columns=['bsize', 'target_courses', 'rec_courses', 'n_rel_rec', 'recall_score', 'target_semester'])
 
-    test_rec_info.to_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_rec_info.json', orient='records', lines=True)
-    test_rec_info.to_csv('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_rec_info.csv')
+    test_rec_info.to_json('./Others/DREAM/test_rec_info.json', orient='records', lines=True)
+    test_rec_info.to_csv('./Others/DREAM/test_rec_info.csv')
 
     # # recall scores for different basket sizes
     # recall_bsize = dict(sorted(recall_bsize.items(), key=lambda item: item[0], reverse= False))
@@ -1283,32 +1283,32 @@ def test(offered_courses, reversed_item_dict, reversed_user_dict, item_dict, rev
     return term_dict, term_dict_predicted, term_dict_predicted_true, term_dict_predicted_false
 
 if __name__ == '__main__':
-    # train_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/train_sample_augmented.json', orient='records', lines= True)
+    # train_data = pd.read_json('./Filtered_data/train_sample_augmented.json', orient='records', lines= True)
     # train_all, train_set_without_target, target, item_dict, user_dict, reversed_item_dict, reversed_user_dict, max_len = preprocess_train_data(train_data)
-    # valid_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/valid_data_all.json', orient='records', lines= True)
+    # valid_data = pd.read_json('./valid_data_all.json', orient='records', lines= True)
     # valid_all, valid_set_without_target, valid_target, user_dict2, reversed_user_dict2 = preprocess_valid_data(valid_data, reversed_user_dict, item_dict)
-    train_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/train_sample_augmented_CR.json', orient='records', lines= True)
-    train_data_unique = pd.read_json('/Users/mkhan149/Downloads/Experiments/train_data_all_CR.json', orient='records', lines= True)
+    train_data = pd.read_json('./Filtered_data/train_sample_augmented_CR.json', orient='records', lines= True)
+    train_data_unique = pd.read_json('./train_data_all_CR.json', orient='records', lines= True)
     # train_all, train_set_without_target, target, item_dict, user_dict, reversed_item_dict, reversed_user_dict, max_len = preprocess_train_data(train_data)
     train_data, item_dict, user_dict, reversed_item_dict, reversed_user_dict = dataprocess.preprocess_train_data_part1(train_data) 
     print("number of items:", len(item_dict))
     term_dict_train, frequency_of_courses_train, count_course_avg_train, course_sd_main, course_number_terms = calculate_avg_n_actual_courses(train_data_unique, reversed_item_dict)
-    valid_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/valid_data_all_CR.json', orient='records', lines= True)
+    valid_data = pd.read_json('./valid_data_all_CR.json', orient='records', lines= True)
     valid_data, user_dict2, reversed_user_dict2 = dataprocess.preprocess_valid_data_part1(valid_data, reversed_user_dict, item_dict)
-    test_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/test_data_all_CR.json', orient='records', lines= True)
+    test_data = pd.read_json('./test_data_all_CR.json', orient='records', lines= True)
     #test_data_excluding_summer_term = remove_summer_term_from_test(test_data)
     #test_data, user_dict3, reversed_user_dict3 = dataprocess.preprocess_test_data_part1(test_data_excluding_summer_term, reversed_user_dict, item_dict, reversed_user_dict2)
     
     test_data, user_dict3, reversed_user_dict3 = dataprocess.preprocess_test_data_part1(test_data, reversed_user_dict, item_dict, reversed_user_dict2)
     test_all, test_set_without_target, test_target = dataprocess.preprocess_test_data_part2(test_data)
-    # test_all = pd.read_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_sample_all.json', orient='records', lines=True)
-    # test_set_without_target= pd.read_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_sample_without_target.json', orient='records', lines=True)
-    # test_target = pd.read_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_target_set.json', orient='records', lines=True)
+    # test_all = pd.read_json('./Others/DREAM/test_sample_all.json', orient='records', lines=True)
+    # test_set_without_target= pd.read_json('./Others/DREAM/test_sample_without_target.json', orient='records', lines=True)
+    # test_target = pd.read_json('./Others/DREAM/test_target_set.json', orient='records', lines=True)
     #term_dict = course_allocation(test_target, reversed_item_dict)
     #print(term_dict[1221])
     #offered_courses = calculate_offered_courses(test_all)
-    offered_courses = offered_courses.offered_course_cal('/Users/mkhan149/Downloads/Experiments/all_data_CR.json')
-    data_dir= '/Users/mkhan149/Downloads/Experiments/Others/DREAM/'
+    offered_courses = offered_courses.offered_course_cal('./all_data_CR.json')
+    data_dir= './Others/DREAM/'
     output_dir = data_dir + "/output_dir"
     utils.create_folder(output_dir)
     output_path= output_dir+ "/test_prediction.txt"
@@ -1338,10 +1338,10 @@ if __name__ == '__main__':
         count_course_dict = dict(sorted(count_course_dict.items(), key=lambda item: item[1], reverse= True))
         term_dict_predicted_false[keys] = count_course_dict
     
-    all_data_en_pred = pd.read_json('/Users/mkhan149/Downloads/Experiments/all_data_en_pred_filtered.json', orient='records', lines= True)
+    all_data_en_pred = pd.read_json('./all_data_en_pred_filtered.json', orient='records', lines= True)
     term_dict_all, frequency_of_courses, count_course_avg, course_sd_main, course_number_terms = calculate_avg_n_actual_courses(all_data_en_pred, reversed_item_dict)
 
-    # valid_data_unique = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/valid_sample_filtered_unique.json', orient='records', lines= True)
+    # valid_data_unique = pd.read_json('./Filtered_data/valid_sample_filtered_unique.json', orient='records', lines= True)
     # term_dict_valid, frequency_of_courses2, count_course_avg2, course_sd_main2, course_number_terms2 = calculate_avg_n_actual_courses(valid_data_unique, reversed_item_dict)
 
     # avg_mse_for_course_allocation, avg_mse_for_course_allocation_considering_not_predicted_courses = calculate_mse_for_course_allocation(term_dict, term_dict_predicted)
