@@ -14,9 +14,9 @@ tf.compat.v1.flags.DEFINE_string("device_id", "828BD340-1C5E-5751-9874-5FF047FFD
 tf.compat.v1.flags.DEFINE_integer("seed", 89, "Seed value for reproducibility (default: 89)")
 
 # Model hyper-parameters
-tf.compat.v1.flags.DEFINE_string("data_dir", "/Users/mkhan149/Downloads/Experiments/Others/LSTM", "The input data directory (default: None)")
-tf.compat.v1.flags.DEFINE_string("output_dir", "/Users/mkhan149/Downloads/Experiments/Others/LSTM", "The output directory (default: None)")
-tf.compat.v1.flags.DEFINE_string("tensorboard_dir","/Users/mkhan149/Downloads/Experiments/Others/LSTM", "The tensorboard directory (default: None)")
+tf.compat.v1.flags.DEFINE_string("data_dir", "./Others/LSTM", "The input data directory (default: None)")
+tf.compat.v1.flags.DEFINE_string("output_dir", "./Others/LSTM", "The output directory (default: None)")
+tf.compat.v1.flags.DEFINE_string("tensorboard_dir","./Others/LSTM", "The tensorboard directory (default: None)")
 
 tf.compat.v1.flags.DEFINE_integer("emb_dim", 64, "The dimensionality of embedding (default: 2)")
 tf.compat.v1.flags.DEFINE_integer("rnn_unit", 128, "The number of hidden units of RNN (default: 4)")
@@ -112,7 +112,7 @@ MAX_SEQ_LENGTH, item_dict, rev_item_dict, item_probs, item_dict_train = utils.bu
 
 # #more training data dividing sequence of length 3 to two sequences of length 2 and 3
 # utils.sequence_of_baskets_training(training_instances)
-# training_file2= '/Users/mkhan149/Downloads/Experiments/Others/LSTM/train_main_new.txt'
+# training_file2= './Others/LSTM/train_main_new.txt'
 # training_instances2 = utils.read_file_as_lines(training_file2)
 # nb_train = len(training_instances2)
 # print(" + Total training sequences: ", nb_train)
@@ -148,7 +148,7 @@ print(" + #batches in test ", total_test_batches)
 #print(offered_courses_train)
 #offered_courses_valid = utils.calculate_offered_courses(validate_instances, item_dict)
 #offered_courses_test = utils.calculate_offered_courses(testing_instances, item_dict)
-offered_courses_all = offered_courses.offered_course_cal('/Users/mkhan149/Downloads/Experiments/all_data.csv')
+offered_courses_all = offered_courses.offered_course_cal('./all_data.csv')
 
 model_dir = output_dir + "/models"
 if config.train_mode:
