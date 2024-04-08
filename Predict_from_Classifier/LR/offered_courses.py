@@ -29,5 +29,5 @@ def offered_course_cal(input_path):
     return offered_course_dict
 
 if __name__ == '__main__':
-    offered_course_dict = offered_course_cal('/Users/mkhan149/Downloads/Experiments/all_data.csv')
+    offered_course_dict = offered_course_cal('./all_data.csv')
     #print(offered_course_dict[1221])
