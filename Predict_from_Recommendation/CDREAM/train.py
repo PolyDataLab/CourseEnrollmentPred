@@ -291,17 +291,17 @@ def train(offered_courses, train_set_without_target, target_set, item_dict):
 
 if __name__ == '__main__':
     #train()
-    # train_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/train_data_all.json', orient='records', lines= True)
+    # train_data = pd.read_json('./train_data_all.json', orient='records', lines= True)
     # train_all, train_set_without_target, train_target,  item_dict, user_dict, reversed_item_dict, reversed_user_dict, max_len = preprocess_train_data(train_data)
     start = time.time()
-    train_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/train_sample_augmented_CR.json', orient='records', lines= True)
+    train_data = pd.read_json('./Filtered_data/train_sample_augmented_CR.json', orient='records', lines= True)
     train_data, item_dict, user_dict, reversed_item_dict, reversed_user_dict = preprocess_train_data_part1(train_data) 
-    train_all = pd.read_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/train_sample_all.json', orient='records', lines=True)
-    train_set_without_target = pd.read_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/train_set_without_target.json', orient='records', lines=True)
-    target_set = pd.read_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/target_set.json', orient='records', lines=True)
+    train_all = pd.read_json('./Others/DREAM/train_sample_all.json', orient='records', lines=True)
+    train_set_without_target = pd.read_json('./Others/DREAM/train_set_without_target.json', orient='records', lines=True)
+    target_set = pd.read_json('./Others/DREAM/target_set.json', orient='records', lines=True)
 
     #offered_courses = calculate_offered_courses(train_all)
-    offered_courses = offered_courses.offered_course_cal('/Users/mkhan149/Downloads/Experiments/all_data_CR.json')
+    offered_courses = offered_courses.offered_course_cal('./all_data_CR.json')
     #train(offered_courses, train_set_without_target, reversed_item_dict, reversed_user_dict)
     train(offered_courses, train_set_without_target, target_set, item_dict)
     end = time.time()
