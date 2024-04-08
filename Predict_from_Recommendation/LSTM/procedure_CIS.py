@@ -1000,10 +1000,10 @@ def generate_prediction(net, data_generator, total_test_batches, display_step, i
         count_course_dict = dict(sorted(count_course_dict.items(), key=lambda item: item[1], reverse= True))
         term_dict_predicted_false[keys] = count_course_dict
 
-    all_data_en_pred = pd.read_json('/Users/mkhan149/Downloads/Experiments/all_data_en_pred_filtered.json', orient='records', lines= True)
+    all_data_en_pred = pd.read_json('./all_data_en_pred_filtered.json', orient='records', lines= True)
     term_dict_all, frequency_of_courses, count_course_avg, course_sd_main, course_number_terms = calculate_avg_n_actual_courses(all_data_en_pred, inv_item_dict)
 
-    # valid_data_unique = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/valid_sample_filtered_unique.json', orient='records', lines= True)
+    # valid_data_unique = pd.read_json('./valid_sample_filtered_unique.json', orient='records', lines= True)
     # term_dict_valid, frequency_of_courses2, count_course_avg2, course_sd_main2, course_number_terms2 = calculate_avg_n_actual_courses(valid_data_unique, reversed_item_dict)
 
     # avg_mse_for_course_allocation, avg_mse_for_course_allocation_considering_not_predicted_courses = calculate_mse_for_course_allocation(term_dict, term_dict_predicted)
