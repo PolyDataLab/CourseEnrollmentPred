@@ -334,8 +334,8 @@ def prepare_train_data(train_data, train_courses, avg_enrollment_train, reversed
                 train_data_en.append(train_courses['1195'][index])
                 train_data_en_all.append(train_data_en)
     train_data_en_all1 = pd.DataFrame(train_data_en_all, columns=['n_en_t1', 'n_en_t2', 'n_en_t3', 'n_en_t4', 'level1', 'level2', 'level3', 'level4', 'level5', 'avg_n_prior', 'target_enr_n'])
-    train_data_en_all1.to_csv('/Users/mkhan149/Downloads/Experiments/Others/Random_forest/train_data_en_all.csv')
-    train_data_en_all1.to_json('/Users/mkhan149/Downloads/Experiments/Others/Random_forest/train_data_en_all.json', orient='records', lines=True)
+    train_data_en_all1.to_csv('./train_data_en_all.csv')
+    train_data_en_all1.to_json('./train_data_en_all.json', orient='records', lines=True)
     return train_data_en_all1
 
 def prepare_test_data(test_target, all_courses, avg_enrollment_all, term_dict_test):
@@ -439,8 +439,8 @@ def prepare_test_data(test_target, all_courses, avg_enrollment_all, term_dict_te
     
     
     test_data_en_all1 = pd.DataFrame(test_data_en_all, columns=['n_en_t1', 'n_en_t2', 'n_en_t3', 'n_en_t4', 'level1', 'level2', 'level3', 'level4', 'level5', 'avg_n_prior', 'target_enr_n'])
-    test_data_en_all1.to_csv('/Users/mkhan149/Downloads/Experiments/Others/Random_forest/test_data_en_all.csv')
-    test_data_en_all1.to_json('/Users/mkhan149/Downloads/Experiments/Others/Random_forest/test_data_en_all.json', orient='records', lines=True)
+    test_data_en_all1.to_csv('./test_data_en_all.csv')
+    test_data_en_all1.to_json('./test_data_en_all.json', orient='records', lines=True)
     return test_data_en_all1
 
 def random_forest_main(train_data_en_all):
@@ -463,8 +463,8 @@ def evaluate_test_data(test_data_en_all, regr):
         course_en_ac_pr.append(row)
     
     course_en_ac_pr = pd.DataFrame(course_en_ac_pr, columns=['actual_enrollment', 'predicted_enrollment'])
-    course_en_ac_pr.to_csv('/Users/mkhan149/Downloads/Experiments/Others/Random_forest/course_en_ac_pr.csv')
-    course_en_ac_pr.to_json('/Users/mkhan149/Downloads/Experiments/Others/Random_forest/course_en_ac_pr.json', orient='records', lines=True)
+    course_en_ac_pr.to_csv('./course_en_ac_pr.csv')
+    course_en_ac_pr.to_json('./course_en_ac_pr.json', orient='records', lines=True)
 
     return y, en_pred, course_en_ac_pr
 
@@ -495,7 +495,7 @@ def calculate_mse_for_course_allocation(actual_en, en_pred):
     avg_mase_for_course_allocation_considering_not_predicted_courses = 0.0
     #count1= 0
     count2 = 0
-    output_path1=  "/Users/mkhan149/Downloads/Experiments/Others/Random_forest/test_course_allocation_v2.txt"
+    output_path1=  "./test_course_allocation_v2.txt"
     #f = open(output_path1, "w") #generating text file with recommendation using filtering function
     #course_allocation = []
     error_list = []
@@ -543,39 +543,38 @@ def calculate_mse_for_course_allocation(actual_en, en_pred):
 
     #f.close()
     # course_allocation_actual_predicted = pd.DataFrame(course_allocation, columns=['Semester', 'Course_ID', 'actual_n', 'predicted_n', 'predicted_n_true', 'predicted_n_false', 'avg_n_actual', 'st_dev_actual', 'number_of_terms', 'n_sts_last_offering'])
-    # course_allocation_actual_predicted.to_csv('/Users/mkhan149/Downloads/Experiments/Others/Random_forest/test_course_allocation_v2.csv')
+    # course_allocation_actual_predicted.to_csv('./test_course_allocation_v2.csv')
     #return avg_mse_for_course_allocation_considering_not_predicted_courses, avg_mae_for_course_allocation_considering_not_predicted_courses, avg_msse_for_course_allocation_considering_not_predicted_courses, avg_mase_for_course_allocation_considering_not_predicted_courses, error_list, ab_error_list, st_error_list
 
 
 
 
 if __name__ == '__main__':
-#    train, test, valid = split_data('/Users/mdakibzabedkhan/Downloads/Experiments/Others/DREAM_2/train_sample.csv')
-#     train, test, valid = split_data('/Users/mkhan149/Downloads/Experiments/Others/Random_forest_2/train_sample.csv')
-   train_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/train_data_all.json', orient='records', lines= True)
+#     train, test, valid = split_data('./Others/Random_forest_2/train_sample.csv')
+   train_data = pd.read_json('./train_data_all.json', orient='records', lines= True)
    train_data, item_dict, user_dict, reversed_item_dict, reversed_user_dict = preprocess_train_data_part1(train_data)
    train_all, train_set_without_target, target, max_len = preprocess_train_data_part2(train_data) 
    #print(len(item_dict))
 #    print(train_all)
 #    print("max_len:", max_len)
    #print(target)
-   #valid_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/valid_data_all.json', orient='records', lines= True)
-   valid_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/valid_sample_all.json', orient='records', lines= True)
+   #valid_data = pd.read_json('./valid_data_all.json', orient='records', lines= True)
+   valid_data = pd.read_json('./Filtered_data/valid_sample_all.json', orient='records', lines= True)
    valid_data, user_dict2, reversed_user_dict2 = preprocess_valid_data_part1(valid_data, reversed_user_dict, item_dict)
    valid_all, valid_set_without_target, valid_target = preprocess_valid_data_part2(valid_data) #  #, 
    #print("reversed_user_dict2: ", reversed_user_dict2)
    #print(valid_all)
-   test_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/test_sample_all.json', orient='records', lines= True)
+   test_data = pd.read_json('./Filtered_data/test_sample_all.json', orient='records', lines= True)
    test_data, user_dict3, reversed_user_dict3 = preprocess_test_data_part1(test_data, reversed_user_dict, item_dict, reversed_user_dict2)
    test_all, test_set_without_target, test_target = preprocess_test_data_part2(test_data) #, item_dict, user_dict, reversed_item_dict, reversed_user_dict #
    term_dict_test, frequency_of_courses, count_course_avg, course_sd_main, course_number_terms = calculate_avg_n_actual_courses(test_all)
    print(term_dict_test[1221])
    print("step 4 done")
-   offered_courses = offered_course_cal('/Users/mkhan149/Downloads/Experiments/all_data.csv')
-#    train_courses = pd.read_json('/Users/mkhan149/Downloads/Experiments/course_df.json', orient='records', lines= True)
-#    avg_enrollment_train = pd.read_json('/Users/mkhan149/Downloads/Experiments/avg_enrollment_prior_term.json', orient='records', lines= True)
-   all_courses_en = pd.read_json('/Users/mkhan149/Downloads/Experiments/course_df_all.json', orient='records', lines= True)
-   avg_enrollment_all = pd.read_json('/Users/mkhan149/Downloads/Experiments/avg_enrollment_prior_term_all.json', orient='records', lines= True)
+   offered_courses = offered_course_cal('./all_data.csv')
+#    train_courses = pd.read_json('./course_df.json', orient='records', lines= True)
+#    avg_enrollment_train = pd.read_json('./avg_enrollment_prior_term.json', orient='records', lines= True)
+   all_courses_en = pd.read_json('./course_df_all.json', orient='records', lines= True)
+   avg_enrollment_all = pd.read_json('./avg_enrollment_prior_term_all.json', orient='records', lines= True)
    train_data_en_all = prepare_train_data(train_all, all_courses_en, avg_enrollment_all, reversed_item_dict)
    
    # calling the random forest regression algorithm
