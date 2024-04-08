@@ -266,7 +266,7 @@ def seq_batch_generator(raw_lines, item_dict, batch_size, is_train=True):
                     break
 
 # def sequence_of_baskets_training(input_file):
-#     with open('/Users/mkhan149/Downloads/Experiments/Course_Beacon/train_main_new.txt', 'w') as f:
+#     with open('./train_main_new.txt', 'w') as f:
 #         for line in input_file:
 #             elements = line.split("|")
 #             if len(elements) > 5:
