@@ -272,7 +272,7 @@ def seq_batch_generator_differently(raw_lines, item_dict, batch_size, is_train=T
                     break
 
 # def sequence_of_baskets_training(input_file):
-#     with open('/Users/mkhan149/Downloads/Experiments/Others/LSTM/train_main_new.txt', 'w') as f:
+#     with open('./Others/LSTM/train_main_new.txt', 'w') as f:
 #         for line in input_file:
 #             elements = line.split("|")
 #             if len(elements) > 5:
