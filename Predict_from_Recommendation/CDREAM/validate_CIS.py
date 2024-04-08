@@ -17,19 +17,19 @@ import utils
 logger = dh.logger_fn("torch-log", "logs/test-{0}.log".format(time.asctime()))
 
 #MODEL = input("☛ Please input the model file you want to test: ")
-#MODEL = "/Users/mkhan149/Downloads/Experiments/Others/DREAM_2/runs/1663182568/model-09-0.8750-0.3290.model"
+#MODEL = "./Others/DREAM_2/runs/1663182568/model-09-0.8750-0.3290.model"
 #MODEL = "1681419484"
 #MODEL = "1681749277"
 #MODEL = "1683234575"
 MODEL = "1683744082"
-#MODEL = '/Users/mkhan149/Downloads/Experiments/Course_Beacon/runs/1674078249'
+#MODEL = './Course_Beacon/runs/1674078249'
 
 while not (MODEL.isdigit() and len(MODEL) == 10):
     MODEL = input("✘ The format of your input is illegal, it should be like(1490175368), please re-input: ")
 logger.info("✔︎ The format of your input is legal, now loading to next step...")
 
 MODEL_DIR = dh.load_model_file(MODEL)
-#MODEL_DIR = "/Users/mkhan149/Downloads/Experiments/Others/DREAM/runs/1663182568/model-09-0.8750-0.3290.model"
+#MODEL_DIR = "./Others/DREAM/runs/1663182568/model-09-0.8750-0.3290.model"
 
 def recall_cal(positives, pred_items):
         p_length= len(positives)
@@ -89,11 +89,11 @@ def valid(offered_courses, reversed_item_dict, reversed_user_dict, item_dict, re
 
     logger.info("✔︎ Training data processing...")
     #test_data = dh.load_data(Config().TRAININGSET_DIR)
-    valid_data = dh.load_data('/Users/mkhan149/Downloads/Experiments/Others/DREAM/valid_sample_without_target.json')
+    valid_data = dh.load_data('./Others/DREAM/valid_sample_without_target.json')
 
     logger.info("✔︎ Test data processing...")
     #test_target = dh.load_data(Config().TESTSET_DIR)
-    valid_target = dh.load_data('/Users/mkhan149/Downloads/Experiments/Others/DREAM/validation_target_set.json')
+    valid_target = dh.load_data('./Others/DREAM/validation_target_set.json')
 
     logger.info("✔︎ Load negative sample...")
     with open(Config().NEG_SAMPLES, 'rb') as handle:
@@ -257,17 +257,17 @@ def valid(offered_courses, reversed_item_dict, reversed_user_dict, item_dict, re
 
 
 if __name__ == '__main__':
-    train_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/train_sample_augmented.json', orient='records', lines= True)
+    train_data = pd.read_json('./Filtered_data/train_sample_augmented.json', orient='records', lines= True)
     # train_all, train_set_without_target, target, item_dict, user_dict, reversed_item_dict, reversed_user_dict, max_len = preprocess_train_data(train_data)
     train_data, item_dict, user_dict, reversed_item_dict, reversed_user_dict = preprocess_train_data_part1(train_data) 
-    valid_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/valid_data_all.json', orient='records', lines= True)
+    valid_data = pd.read_json('./valid_data_all.json', orient='records', lines= True)
     valid_data, user_dict2, reversed_user_dict2 = preprocess_valid_data_part1(valid_data, reversed_user_dict, item_dict)
-    valid_all = pd.read_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/valid_sample_all.json', orient='records', lines=True)
-    valid_set_without_target= pd.read_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/valid_sample_without_target.json', orient='records', lines=True)
-    valid_target = pd.read_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/validation_target_set.json', orient='records', lines=True)
+    valid_all = pd.read_json('./Others/DREAM/valid_sample_all.json', orient='records', lines=True)
+    valid_set_without_target= pd.read_json('./Others/DREAM/valid_sample_without_target.json', orient='records', lines=True)
+    valid_target = pd.read_json('./Others/DREAM/validation_target_set.json', orient='records', lines=True)
     #offered_courses = calculate_offered_courses(valid_all)
-    offered_courses = offered_course_cal('/Users/mkhan149/Downloads/Experiments/all_data.csv')
-    data_dir= '/Users/mkhan149/Downloads/Experiments/Others/DREAM/'
+    offered_courses = offered_course_cal('./all_data.csv')
+    data_dir= './Others/DREAM/'
     output_dir = data_dir + "/output_dir"
     create_folder(output_dir)
     output_path= output_dir+ "/valid_prediction.txt"
