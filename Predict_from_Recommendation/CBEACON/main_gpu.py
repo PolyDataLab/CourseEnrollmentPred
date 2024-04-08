@@ -14,9 +14,9 @@ tf.compat.v1.flags.DEFINE_string("device_id", "828BD340-1C5E-5751-9874-5FF047FFD
 tf.compat.v1.flags.DEFINE_integer("seed", 89, "Seed value for reproducibility (default: 89)")
 
 # Model hyper-parameters
-tf.compat.v1.flags.DEFINE_string("data_dir", "/Users/mkhan149/Downloads/Experiments/Course_Beacon", "The input data directory (default: None)")
-tf.compat.v1.flags.DEFINE_string("output_dir", "/Users/mkhan149/Downloads/Experiments/Course_Beacon", "The output directory (default: None)")
-tf.compat.v1.flags.DEFINE_string("tensorboard_dir","/Users/mkhan149/Downloads/Experiments/Course_Beacon", "The tensorboard directory (default: None)")
+tf.compat.v1.flags.DEFINE_string("data_dir", "./Course_Beacon", "The input data directory (default: None)")
+tf.compat.v1.flags.DEFINE_string("output_dir", "./Course_Beacon", "The output directory (default: None)")
+tf.compat.v1.flags.DEFINE_string("tensorboard_dir","./Course_Beacon", "The tensorboard directory (default: None)")
 
 tf.compat.v1.flags.DEFINE_integer("emb_dim", 64, "The dimensionality of embedding (default: 2)")
 tf.compat.v1.flags.DEFINE_integer("rnn_unit", 128, "The number of hidden units of RNN (default: 4)")
@@ -98,7 +98,7 @@ print(" + Total training sequences: ", nb_train)
 
 # #more training data dividing sequence of length 3 to two sequences of length 2 and 3
 # utils.sequence_of_baskets_training(training_instances)
-# training_file2= '/Users/mkhan149/Downloads/Experiments/Course_Beacon/train_main_new.txt'
+# training_file2= './Course_Beacon/train_main_new.txt'
 # training_instances2 = utils.read_file_as_lines(training_file2)
 # nb_train = len(training_instances2)
 # print(" + Total training sequences: ", nb_train)
@@ -149,7 +149,7 @@ print(" + #batches in test ", total_test_batches)
 #print(offered_courses_train)
 #offered_courses_valid = utils.calculate_offered_courses(validate_instances, item_dict)
 #offered_courses_test = utils.calculate_offered_courses(testing_instances, item_dict)
-offered_courses_all = offered_courses.offered_course_cal('/Users/mkhan149/Downloads/Experiments/all_data_CR.json')
+offered_courses_all = offered_courses.offered_course_cal('./all_data_CR.json')
 
 model_dir = output_dir + "/models"
 if config.train_mode:
