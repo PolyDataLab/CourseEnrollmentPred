@@ -550,7 +550,6 @@ def calculate_mse_for_course_allocation(actual_en, en_pred):
 
 
 if __name__ == '__main__':
-#    train, test, valid = split_data('/Users/mdakibzabedkhan/Downloads/Experiments/Others/DREAM_2/train_sample.csv')
 #     train, test, valid = split_data('./Others/Gaussian_processes_2/train_sample.csv')
 #    train_data = pd.read_json('./train_data_all.json', orient='records', lines= True)
    train_data = pd.read_json('./train_data_en_pred_filtered.json', orient='records', lines= True)
