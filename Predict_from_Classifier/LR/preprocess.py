@@ -89,9 +89,9 @@ def preprocess_train_data_part2(input_data):
     
     target_set = pd.DataFrame(target_set, columns=['userID', 'baskets',  'last_semester'])
    
-    train_set_all.to_json('/Users/mkhan149/Downloads/Experiments/Others/Logistic_regression/train_sample_all.json', orient='records', lines=True)
-    train_set_without_target.to_json('/Users/mkhan149/Downloads/Experiments/Others/Logistic_regression/train_set_without_target.json', orient='records', lines=True)
-    target_set.to_json('/Users/mkhan149/Downloads/Experiments/Others/Logistic_regression/target_set.json', orient='records', lines=True)
+    train_set_all.to_json('./train_sample_all.json', orient='records', lines=True)
+    train_set_without_target.to_json('./train_set_without_target.json', orient='records', lines=True)
+    target_set.to_json('./target_set.json', orient='records', lines=True)
     return train_set_all, train_set_without_target, target_set, max_len
     #return train_set_all, train_set_without_target, target_set, max_len
 
@@ -159,9 +159,9 @@ def preprocess_valid_data_part2(input_data):
         index += 1
     validation_target_set = pd.DataFrame(validation_target_set, columns=['userID', 'baskets',  'last_semester'])
     
-    valid_set_all.to_json('/Users/mkhan149/Downloads/Experiments/Others/Logistic_regression/valid_sample_all.json', orient='records', lines=True)
-    valid_set_without_target.to_json('/Users/mkhan149/Downloads/Experiments/Others/Logistic_regression/valid_sample_without_target.json', orient='records', lines=True)
-    validation_target_set.to_json('/Users/mkhan149/Downloads/Experiments/Others/Logistic_regression/validation_target_set.json', orient='records', lines=True)
+    valid_set_all.to_json('./valid_sample_all.json', orient='records', lines=True)
+    valid_set_without_target.to_json('./valid_sample_without_target.json', orient='records', lines=True)
+    validation_target_set.to_json('./validation_target_set.json', orient='records', lines=True)
     return valid_set_all, valid_set_without_target, validation_target_set
     #return valid_set_all, valid_set_without_target, validation_target_set
 
@@ -230,28 +230,28 @@ def preprocess_test_data_part2(input_data):
         index +=1
     test_target_set = pd.DataFrame(test_target_set, columns=['userID', 'baskets', 'last_semester'])
    
-    test_set_all.to_json('/Users/mkhan149/Downloads/Experiments/Others/Logistic_regression/test_sample_all.json', orient='records', lines=True)
-    test_set_without_target.to_json('/Users/mkhan149/Downloads/Experiments/Others/Logistic_regression/test_sample_without_target.json', orient='records', lines=True)
-    test_target_set.to_json('/Users/mkhan149/Downloads/Experiments/Others/Logistic_regression/test_target_set.json', orient='records', lines=True)
+    test_set_all.to_json('./test_sample_all.json', orient='records', lines=True)
+    test_set_without_target.to_json('./test_sample_without_target.json', orient='records', lines=True)
+    test_target_set.to_json('./test_target_set.json', orient='records', lines=True)
     return test_set_all, test_set_without_target, test_target_set
     #return test_set_all, test_set_without_target, test_target_set
 
 if __name__ == '__main__':
-   #train, test, valid = split_data('/Users/mkhan149/Downloads/Experiments/Others/Logistic_regression_2/train_sample.csv')
-   #train_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/train_sample_augmented.json', orient='records', lines= True)
-   train_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/train_data_en_pred_filtered.json', orient='records', lines= True)
+   #train, test, valid = split_data('./Others/Logistic_regression_2/train_sample.csv')
+   #train_data = pd.read_json('./Filtered_data/train_sample_augmented.json', orient='records', lines= True)
+   train_data = pd.read_json('./train_data_en_pred_filtered.json', orient='records', lines= True)
    train_data, item_dict, user_dict, reversed_item_dict, reversed_user_dict = preprocess_train_data_part1(train_data)
    train_all, train_set_without_target, target, max_len = preprocess_train_data_part2(train_data) 
    #print(len(item_dict))
 #    print(train_all)
 #    print("max_len:", max_len)
    #print(target)
-   #valid_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/valid_data_all.json', orient='records', lines= True)
-   valid_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/valid_sample_all.json', orient='records', lines= True)
+   #valid_data = pd.read_json('./valid_data_all.json', orient='records', lines= True)
+   valid_data = pd.read_json('./Filtered_data/valid_sample_all.json', orient='records', lines= True)
    valid_data, user_dict2, reversed_user_dict2 = preprocess_valid_data_part1(valid_data, reversed_user_dict, item_dict)
    valid_all, valid_set_without_target, valid_target = preprocess_valid_data_part2(valid_data) #  #, 
    #print("reversed_user_dict2: ", reversed_user_dict2)
    #print(valid_all)
-   test_data = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/test_sample_all.json', orient='records', lines= True)
+   test_data = pd.read_json('./Filtered_data/test_sample_all.json', orient='records', lines= True)
    test_data, user_dict3, reversed_user_dict3 = preprocess_test_data_part1(test_data, reversed_user_dict, item_dict, reversed_user_dict2)
    test_all, test_set_without_target, test_target = preprocess_test_data_part2(test_data) #, item_dict, user_dict, reversed_item_dict, reversed_user_dict #, 
