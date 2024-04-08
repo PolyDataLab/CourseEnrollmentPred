@@ -880,8 +880,8 @@ def generate_prediction(net, data_generator, total_test_batches, display_step, i
             row = [t_length, target_basket3, rec_basket2, rel_rec, recall_temp, target_semester]
             rec_info.append(row)
             # test_rec_info = pd.DataFrame(rec_info, columns=['bsize', 'target_courses', 'rec_courses', 'n_rel_rec', 'recall_score', 'target_semester'])
-            # test_rec_info.to_json('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_rec_info.json', orient='records', lines=True)
-            # test_rec_info.to_csv('/Users/mkhan149/Downloads/Experiments/Others/DREAM/test_rec_info.csv')
+            # test_rec_info.to_json('./Others/DREAM/test_rec_info.json', orient='records', lines=True)
+            # test_rec_info.to_csv('./Others/DREAM/test_rec_info.csv')
             if recall_temp>0:  recall_test_for_one_cor_pred += recall_temp
             correct_preds2= len((set(top_items) & set(target_basket2)))
             total_correct_preds += correct_preds2
@@ -1055,8 +1055,8 @@ def generate_prediction(net, data_generator, total_test_batches, display_step, i
     #     print("percentage of retaken courses out of missed courses for test data: ", per_of_retaken_courses)
     
     test_rec_info = pd.DataFrame(rec_info, columns=['bsize', 'target_courses', 'rec_courses', 'n_rel_rec', 'recall_score', 'target_semester'])
-    test_rec_info.to_json('/Users/mkhan149/Downloads/Experiments/Course_Beacon/test_rec_info.json', orient='records', lines=True)
-    test_rec_info.to_csv('/Users/mkhan149/Downloads/Experiments/Course_Beacon/test_rec_info.csv')
+    test_rec_info.to_json('./Course_Beacon/test_rec_info.json', orient='records', lines=True)
+    test_rec_info.to_csv('./Course_Beacon/test_rec_info.csv')
     # number of non_CIS courses out of missed courses for different number of prior semesters
     # missed_bsize = dict(sorted(missed_bsize.items(), key=lambda item: item[0], reverse= False))
     # for k, v in missed_bsize.items():
@@ -1107,10 +1107,10 @@ def generate_prediction(net, data_generator, total_test_batches, display_step, i
         count_course_dict = dict(sorted(count_course_dict.items(), key=lambda item: item[1], reverse= True))
         term_dict_predicted_false[keys] = count_course_dict
     #calculate average for total number of times a course is taken at each semester using training data 
-    all_data_en_pred = pd.read_json('/Users/mkhan149/Downloads/Experiments/all_data_en_pred_filtered.json', orient='records', lines= True)
+    all_data_en_pred = pd.read_json('./all_data_en_pred_filtered.json', orient='records', lines= True)
     term_dict_all, frequency_of_courses, count_course_avg, course_sd_main, course_number_terms = calculate_avg_n_actual_courses(all_data_en_pred, inv_item_dict)
 
-    # valid_data_unique = pd.read_json('/Users/mkhan149/Downloads/Experiments/Filtered_data/valid_sample_filtered_unique.json', orient='records', lines= True)
+    # valid_data_unique = pd.read_json('./Filtered_data/valid_sample_filtered_unique.json', orient='records', lines= True)
     # term_dict_valid, frequency_of_courses2, count_course_avg2, course_sd_main2, course_number_terms2 = calculate_avg_n_actual_courses(valid_data_unique, reversed_item_dict)
 
     # avg_mse_for_course_allocation, avg_mse_for_course_allocation_considering_not_predicted_courses = calculate_mse_for_course_allocation(term_dict, term_dict_predicted)
